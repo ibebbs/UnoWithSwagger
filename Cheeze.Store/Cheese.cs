@@ -7,13 +7,15 @@ namespace Cheeze.Store
     {
         public Guid Id { get; set; }
 
-        public Uri? Uri { get; set; }
-
         [Required]
         public string Name { get; set; } = string.Empty;
 
         public string Description { get; set; } = string.Empty;
 
         public decimal Price { get; set; }
+
+        public Uri? Uri { get; set; }
+
+        public Uri? ImageUri { get; set; }
     }
 }

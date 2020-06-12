@@ -16,7 +16,7 @@
 
   <Target Name="NSwag" AfterTargets="Build">
     <Copy SourceFiles="@(ReferencePath)" DestinationFolder="$(OutDir)References" />
-    <Exec Condition="'$(NSwag)'=='true'" Command="$(NSwagExe_Core31) run nswag.json /variables:Configuration=$(Configuration),OutDir=$(OutDir),Target=$(SolutionDir)Cheeze.Store.Client" />
+    <Exec Condition="'$(NSwag)'==''" Command="$(NSwagExe_Core31) run nswag.json /variables:Configuration=$(Configuration),OutDir=$(OutDir),Target=$(SolutionDir)Cheeze.Store.Client" />
     <RemoveDir Directories="$(OutDir)References" />
   </Target>
 </Project>

@@ -15,21 +15,32 @@
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Padding="4">
             <Button Content="Load Cheeze!" Command="{Binding Path=LoadCheese}" Padding="12,4" Margin="4" />
         </StackPanel>
-        <ListBox ItemsSource="{Binding Cheese, Mode=OneWay}">
+        <ListBox Grid.Row="1" ItemsSource="{Binding Cheeses, Mode=OneWay}" HorizontalContentAlignment="Stretch">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid>
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.3*" MaxWidth="240"/>
                             <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                        <TextBlock Text="{Binding Name}" />
-                        <TextBlock Text="{Binding Price}" Grid.Column="1"/>
-                        <TextBlock Text="{Binding Description}" Grid.Row="1" Grid.ColumnSpan="2" TextWrapping="WrapWholeWords"/>
+                        <Image Grid.Row="0" Grid.Column="0" Source="{Binding ImageUri}" Margin="4" />
+                        <Grid Grid.Column="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Column="0" Text="{Binding Name}" Margin="4" Style="{ThemeResource TitleTextBlockStyle}" />
+                            <TextBlock Grid.Column="1" Margin="4" Style="{ThemeResource TitleTextBlockStyle}" >
+                                <Run Text="£"/>
+                                <Run Text="{Binding Price}" />
+                            </TextBlock>
+                            <TextBlock Text="{Binding Description}" Style="{ThemeResource BodyTextBlockStyle}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" TextWrapping="WrapWholeWords" VerticalAlignment="Top" Margin="4"/>
+                        </Grid>
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>

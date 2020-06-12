@@ -215,9 +215,6 @@ namespace Cheeze.Store.Client
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public System.Guid Id { get; set; }
     
-        [Newtonsoft.Json.JsonProperty("Uri", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Uri Uri { get; set; }
-    
         [Newtonsoft.Json.JsonProperty("Name", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required]
         public string Name { get; set; }
@@ -228,6 +225,12 @@ namespace Cheeze.Store.Client
     
         [Newtonsoft.Json.JsonProperty("Price", Required = Newtonsoft.Json.Required.Always)]
         public decimal Price { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("Uri", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Uri Uri { get; set; }
+    
+        [Newtonsoft.Json.JsonProperty("ImageUri", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Uri ImageUri { get; set; }
     
     
     }
