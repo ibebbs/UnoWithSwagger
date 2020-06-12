@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace Cheeze.App
     {
         private readonly Store.Client.IStoreClient _storeClient;
         private readonly Platform.ISchedulers _schedulers;
+        private readonly ILogger<ViewModel> _logger;
         private readonly MVx.Observable.Command _loadCheese;
         private readonly MVx.Observable.Property<IEnumerable<Store.Client.Cheese>> _cheeses;
 
@@ -22,6 +24,8 @@ namespace Cheeze.App
             _storeClient = storeClient;
             _schedulers = schedulers;
 
+            _logger = global::Uno.Extensions.LogExtensionPoint.AmbientLoggerFactory.CreateLogger<ViewModel>();
+
             _loadCheese = new MVx.Observable.Command(true);
             _cheeses = new MVx.Observable.Property<IEnumerable<Store.Client.Cheese>>(Enumerable.Empty<Store.Client.Cheese>(), nameof(Cheeses), args => PropertyChanged?.Invoke(this, args));
         }
@@ -29,6 +33,7 @@ namespace Cheeze.App
         private IDisposable ShouldLoadCheeseWhenLoadCheeseInvoked()
         {
             return _loadCheese
+                .Do(_ => _logger.LogInformation("Loading Cheeses!"))
                 .SelectMany(_ => _storeClient.GetAsync())
                 .ObserveOn(_schedulers.Dispatcher)
                 .Subscribe(_cheeses);

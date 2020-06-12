@@ -9,21 +9,35 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="64"/>
             <RowDefinition />
         </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="#FF99cac2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Image Source="ms-appx:///Assets/TheFineCheeseCompany.png" Margin="12" VerticalAlignment="Center"/>
+        </Grid>              
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Padding="4">
-            <Button Content="Load Cheeze!" Command="{Binding Path=LoadCheese}" Padding="12,4" Margin="4" />
+            <Button Content="Load Cheeze!" Command="{Binding Path=LoadCheese}" Padding="12,4" Margin="4" VerticalAlignment="Stretch" />
         </StackPanel>
-        <ListBox Grid.Row="1" ItemsSource="{Binding Cheeses, Mode=OneWay}" HorizontalContentAlignment="Stretch">
-            <ListBox.ItemTemplate>
+        <ListView Grid.Row="1" ItemsSource="{Binding Cheeses, Mode=OneWay}" HorizontalContentAlignment="Stretch" Padding="0">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    <Setter Property="Padding" Value="4,0"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.3*" MaxWidth="240"/>
+                            <ColumnDefinition Width="0.3*" MaxWidth="96"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Image Grid.Row="0" Grid.Column="0" Source="{Binding ImageUri}" Margin="4" />
+                        <Image Grid.Row="0" Grid.Column="0" Source="{Binding ImageUri}" Margin="0,4" />
                         <Grid Grid.Column="1">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
@@ -34,16 +48,16 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
-                            <TextBlock Grid.Column="0" Text="{Binding Name}" Margin="4" Style="{ThemeResource TitleTextBlockStyle}" />
-                            <TextBlock Grid.Column="1" Margin="4" Style="{ThemeResource TitleTextBlockStyle}" >
+                            <TextBlock Grid.Column="0" Text="{Binding Name}" Margin="4" Style="{StaticResource TitleTextBlockStyle}" />
+                            <TextBlock Grid.Column="1" Margin="4" Style="{StaticResource TitleTextBlockStyle}" >
                                 <Run Text="£"/>
                                 <Run Text="{Binding Price}" />
                             </TextBlock>
-                            <TextBlock Text="{Binding Description}" Style="{ThemeResource BodyTextBlockStyle}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" TextWrapping="WrapWholeWords" VerticalAlignment="Top" Margin="4"/>
+                            <TextBlock Text="{Binding Description}" Style="{StaticResource BodyTextBlockStyle}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" TextWrapping="WrapWholeWords" VerticalAlignment="Top" Margin="4"/>
                         </Grid>
                     </Grid>
                 </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Page>

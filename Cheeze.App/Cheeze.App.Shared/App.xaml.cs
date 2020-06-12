@@ -23,6 +23,8 @@ namespace Cheeze.App
     /// </summary>
     sealed partial class App : Application
     {
+        private readonly ILogger<App> _logger;
+
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -31,7 +33,9 @@ namespace Cheeze.App
         {
             ConfigureFilters(global::Uno.Extensions.LogExtensionPoint.AmbientLoggerFactory);
 
-            Platform.Services.Service.PerformRegistration();
+            _logger = global::Uno.Extensions.LogExtensionPoint.AmbientLoggerFactory.CreateLogger<App>();
+
+            Platform.Services.Service.PerformRegistration(_logger);
 
             this.InitializeComponent();
             this.Suspending += OnSuspending;
