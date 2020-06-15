@@ -21,18 +21,6 @@ namespace Cheeze.App.Platform
             _serviceProvider = new Lazy<IServiceProvider>(() => _serviceCollection.BuildServiceProvider());
         }
 
-        private void RegisterGlobalServices(IServiceCollection services, ILogger logger)
-        {
-            services
-                .AddHttpClient<Store.Client.IStoreClient, Store.Client.StoreClient>(
-                    httpClient => httpClient.BaseAddress = GetBaseAddress())
-                .ConfigurePrimaryHttpMessageHandler(PrimaryHttpMessageHandler);
-
-            services.AddSingleton<ISchedulers, Schedulers>();
-
-            services.AddTransient<ViewModel>();
-        }
-
         partial void GetHttpMessageHandler(ref HttpMessageHandler handler);
 
         partial void GetBaseAddress(ref Uri uri);
@@ -57,6 +45,18 @@ namespace Cheeze.App.Platform
             handler ??= new HttpClientHandler();
 
             return handler;
+        }
+
+        private void RegisterGlobalServices(IServiceCollection services, ILogger logger)
+        {
+            services
+                .AddHttpClient<Store.Client.IStoreClient, Store.Client.StoreClient>(
+                    httpClient => httpClient.BaseAddress = GetBaseAddress())
+                ; //.ConfigurePrimaryHttpMessageHandler(PrimaryHttpMessageHandler);
+
+            services.AddSingleton<ISchedulers, Schedulers>();
+
+            services.AddTransient<ViewModel>();
         }
 
         public void PerformRegistration(ILogger logger)

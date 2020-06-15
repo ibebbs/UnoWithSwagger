@@ -23,7 +23,7 @@
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Padding="4">
             <Button Content="Load Cheeze!" Command="{Binding Path=LoadCheese}" Padding="12,4" Margin="4" VerticalAlignment="Stretch" />
         </StackPanel>
-        <ListView Grid.Row="1" ItemsSource="{Binding Cheeses, Mode=OneWay}" HorizontalContentAlignment="Stretch" Padding="0">
+        <ListView Grid.Row="1" ItemsSource="{Binding Cheeses, Mode=OneWay}" HorizontalContentAlignment="Stretch" Padding="0,0,12,0">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
