@@ -4,8 +4,9 @@
   
   <assembly fullname="Newtonsoft.Json" />
   <assembly fullname="System.ComponentModel.Annotations"/>
-  <assembly fullname="Cheeze.Store.Client" />
   <assembly fullname="Microsoft.Extensions.Http"/>
+  <assembly fullname="Microsoft.Extensions.Options"/>
+  <assembly fullname="Cheeze.Store.Client" />
 
   <assembly fullname="System.Core">
 	<!-- This is required by JSon.NET and any expression.Compile caller -->

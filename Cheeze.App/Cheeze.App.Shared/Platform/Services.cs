@@ -23,19 +23,27 @@ namespace Cheeze.App.Platform
 
         private void RegisterGlobalServices(IServiceCollection services, ILogger logger)
         {
-            services.AddHttpClient<Store.Client.IStoreClient, Store.Client.StoreClient>(
-                httpClient => httpClient.BaseAddress = new Uri("http://localhost:5000")
-            );
-
-            if (HttpClientFactory != null)
-            {
-                logger.LogInformation("Registering CustomHttpClientFactory");
-                services.Add(ServiceDescriptor.Singleton(typeof(IHttpClientFactory), HttpClientFactory));
-            }
+            services
+                .AddHttpClient<Store.Client.IStoreClient, Store.Client.StoreClient>(
+                    httpClient => httpClient.BaseAddress = new Uri("http://localhost:5000"))
+                .ConfigurePrimaryHttpMessageHandler(PrimaryHttpMessageHandler);
 
             services.AddSingleton<ISchedulers, Schedulers>();
 
             services.AddTransient<ViewModel>();
+        }
+
+        partial void GetHttpMessageHandler(ref HttpMessageHandler handler);
+
+        private HttpMessageHandler PrimaryHttpMessageHandler()
+        {
+            HttpMessageHandler handler = null;
+
+            GetHttpMessageHandler(ref handler);
+
+            handler ??= new HttpClientHandler();
+
+            return handler;
         }
 
         public void PerformRegistration(ILogger logger)

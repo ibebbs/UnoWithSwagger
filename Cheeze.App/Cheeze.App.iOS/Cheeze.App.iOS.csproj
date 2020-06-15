@@ -12,6 +12,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <ResourcesDirectory>..\Cheeze.App.Shared\Strings</ResourcesDirectory>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -100,7 +101,6 @@
     <Compile Include="Main.cs" />
     <None Include="Info.plist" />
     <Compile Include="Platform\Schedulers.cs" />
-    <Compile Include="Platform\Services.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Entitlements.plist" />
     <BundleResource Include="Resources\SplashScreen%402x.png" />
