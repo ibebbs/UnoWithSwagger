@@ -25,7 +25,7 @@ namespace Cheeze.App.Platform
         {
             services
                 .AddHttpClient<Store.Client.IStoreClient, Store.Client.StoreClient>(
-                    httpClient => httpClient.BaseAddress = new Uri("http://localhost:5000"))
+                    httpClient => httpClient.BaseAddress = GetBaseAddress())
                 .ConfigurePrimaryHttpMessageHandler(PrimaryHttpMessageHandler);
 
             services.AddSingleton<ISchedulers, Schedulers>();
@@ -34,6 +34,19 @@ namespace Cheeze.App.Platform
         }
 
         partial void GetHttpMessageHandler(ref HttpMessageHandler handler);
+
+        partial void GetBaseAddress(ref Uri uri);
+
+        private Uri GetBaseAddress()
+        {
+            Uri uri = null;
+
+            GetBaseAddress(ref uri);
+
+            uri ??= new Uri("http://localhost:5000");
+
+            return uri;
+        }
 
         private HttpMessageHandler PrimaryHttpMessageHandler()
         {

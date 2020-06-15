@@ -80,6 +80,7 @@
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
     <Compile Include="Platform\Schedulers.cs" />
+    <Compile Include="Platform\Services.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Main.cs" />
   </ItemGroup>
