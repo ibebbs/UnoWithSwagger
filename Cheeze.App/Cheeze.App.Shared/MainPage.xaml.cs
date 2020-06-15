@@ -14,7 +14,7 @@ namespace Cheeze.App
         {
             this.InitializeComponent();
 
-            _viewModel = Platform.Services.Service.Provider.GetRequiredService<ViewModel>();
+            _viewModel = Platform.Services.Instance.Provider.GetRequiredService<ViewModel>();
             DataContext = _viewModel;
         }
 

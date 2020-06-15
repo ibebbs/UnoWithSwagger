@@ -35,7 +35,7 @@ namespace Cheeze.App
 
             _logger = global::Uno.Extensions.LogExtensionPoint.AmbientLoggerFactory.CreateLogger<App>();
 
-            Platform.Services.Service.PerformRegistration(_logger);
+            Platform.Services.Instance.PerformRegistration(_logger);
 
             this.InitializeComponent();
             this.Suspending += OnSuspending;

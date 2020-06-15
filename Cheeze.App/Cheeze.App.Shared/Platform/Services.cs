@@ -1,16 +1,13 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
-using Uno.Extensions;
 
 namespace Cheeze.App.Platform
 {
     public partial class Services
     {
-        public static readonly Services Service = new Services();
+        public static readonly Services Instance = new Services();
 
         private readonly ServiceCollection _serviceCollection;
         private readonly Lazy<IServiceProvider> _serviceProvider;
